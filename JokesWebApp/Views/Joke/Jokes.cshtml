@@ -1,0 +1,68 @@
+﻿@model List<JokeViewModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .joke-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .joke {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+            width: calc(33.33% - 20px);
+        }
+
+        .joke-title {
+            font-size: 24px;
+            margin: 0 0 10px;
+        }
+
+        .joke-category {
+            font-size: 14px;
+            margin: 0 0 5px;
+        }
+
+        .joke-date {
+            font-size: 14px;
+            margin: 0 0 10px;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 14px;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: #3E8E41;
+            }
+    </style>
+</head>
+<body>
+    <div class="joke-list">
+        @foreach (var joke in Model)
+        {
+            <div class="joke">
+                <h2 class="joke-title">@joke.JokeName</h2>
+                <p class="joke-category">Category: @joke.JokeCategory</p>
+                <p class="joke-date">Date added: @joke.JokeDateAdded.ToShortDateString()</p>
+                <a asp-controller="Joke" asp-action="Details" asp-route-id="@joke.JokeID" class="btn btn-primary mx-1">Read More</a>
+            </div>
+        }
+    </div>
+</body>
+</html>
+
+

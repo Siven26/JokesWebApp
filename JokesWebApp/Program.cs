@@ -1,4 +1,7 @@
 using JokesWebApp.Data;
+using JokesWebApp.Services;
+using JokesWebApp.Services.Interfaces;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +15,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddTransient<JokeService, JokeService>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

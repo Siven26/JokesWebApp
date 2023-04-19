@@ -1,0 +1,76 @@
+﻿@model JokeViewModel
+@{
+    ViewData["Title"] = $"{Model.JokeName} - Details";
+}
+
+<DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            .joke-details {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+                padding: 20px;
+                width: 100%;
+            }
+
+                .joke-details h2 {
+                    font-size: 36px;
+                    margin: 0 0 20px;
+                }
+
+                .joke-details p {
+                    font-size: 18px;
+                    margin: 0 0 20px;
+                }
+
+                .joke-details .joke-category {
+                    font-size: 24px;
+                    margin: 0 0 10px;
+                }
+
+                .joke-details .joke-date {
+                    font-size: 18px;
+                    margin: 0 0 10px;
+                }
+
+                .joke-details .joke-actions {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                .joke-details .btn {
+                    background-color: #4CAF50;
+                    border: none;
+                    border-radius: 5px;
+                    color: #fff;
+                    font-size: 14px;
+                    padding: 10px 20px;
+                    text-decoration: none;
+                    transition: background-color 0.3s;
+                }
+
+                    .joke-details .btn:hover {
+                        background-color: #3E8E41;
+                    }
+        </style>
+    </head>
+    <body>
+        <div class="joke-list">
+            <div class="joke">
+                <h2>@Model.JokeName</h2>
+                <p>Category: @Model.JokeCategory</p>
+                <p>@Model.JokeText</p>
+                <p>Date added: @Model.JokeDateAdded.ToShortDateString()</p>
+                <div class="joke-actions">
+                    <a href="#">Comment</a>
+                    <a href="#">Rate</a>
+                    <a asp-controller="Joke" asp-action="Jokes">Back</a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,32 @@
+﻿@model JokeViewModel
+
+<DOCTYPE html>
+    <html>
+        <head>
+            <style>
+                
+            </style>
+        </head>
+        <body>
+            <form method="post" asp-action="AddJoke">
+            <div class="form-container">
+                <p><label asp-for="JokeName">Name:</label></p>
+                <input asp-for="JokeName" class="form-field" required />
+
+                <p><label asp-for="JokeCategory">Category:</label></p>
+                <input name="JokeCategory" asp-for="JokeCategory" class="form-field" required />
+
+                <p><label asp-for="JokeText">Joke:</label></p>
+                <textarea asp-for="JokeText" class="form-field" rows="5" required></textarea>
+            </div>
+            <div class="submit-button-container">
+                <input type="submit" class="submit-button" value="Add" />
+            </div>
+            <div class="back-button-container">
+                <a asp-controller="Joke" asp-action="Jokes" class="back-button">Back</a>
+            </div>
+            </form>
+        </body>
+    </html>
+</DOCTYPE>
+
