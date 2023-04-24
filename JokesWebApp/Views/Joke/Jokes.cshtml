@@ -59,6 +59,8 @@
                 <p class="joke-category">Category: @joke.JokeCategory</p>
                 <p class="joke-date">Date added: @joke.JokeDateAdded.ToShortDateString()</p>
                 <a asp-controller="Joke" asp-action="Details" asp-route-id="@joke.JokeID" class="btn btn-primary mx-1">Read More</a>
+                <a asp-controller="Joke" asp-action="Update" asp-route-id="@joke.JokeID" class="btn btn-primary mx-1">Update Joke</a>
+                <a asp-controller="Joke" asp-action="DeleteJoke" asp-route-id="@joke.JokeID" class="btn btn-danger mx-1">Delete Joke</a>
             </div>
         }
     </div>

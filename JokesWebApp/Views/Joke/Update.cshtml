@@ -1,0 +1,35 @@
+﻿@model JokeViewModel
+
+@{
+    ViewData["Title"] = $"Update - {Model.JokeName}";
+}
+
+
+<div>
+    <h1>Update: <b>@Model.JokeName</b></h1>
+</div>
+<div>
+    <form asp-action="UpdateJoke" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="JokeID" />
+        <div class="form">
+            <label asp-for="JokeName"></label>
+            <input asp-for="JokeName" />
+            <span asp-validation-for="JokeName"></span>
+        </div>
+        <div class="form">
+            <label asp-for="JokeCategory"></label>
+            <input asp-for="JokeCategory" />
+            <span asp-validation-for="JokeCategory"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="JokeText"></label>
+            <textarea asp-for="JokeText"></textarea>
+            <span asp-validation-for="JokeText"></span>
+        </div>
+        <div class="buttons">
+            <input type="submit" value="Save" />
+            <a asp-controller="Joke" asp-action="Jokes">Back</a>
+        </div>
+    </form>
+</div>

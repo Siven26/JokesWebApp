@@ -32,12 +32,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9rZVxBZGRKb2tlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Joke/DeleteJoke.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9rZVxEZWxldGVKb2tlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Joke/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9rZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Joke/Jokes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9rZVxKb2tlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Joke/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9rZVxVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Shared/Error.cshtml]

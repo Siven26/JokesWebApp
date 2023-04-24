@@ -4,6 +4,7 @@ namespace JokesWebApp.Services.Interfaces
 {
     public interface IJokeService
     {
+        Task DeleteJoke(string id);
         Task CreateAsync(JokeViewModel model);
         JokeViewModel UpdateById(string id);
         Task UpdateAsync(JokeViewModel model);

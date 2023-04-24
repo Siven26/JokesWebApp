@@ -40,6 +40,20 @@ namespace JokesWebApp.Services
             await context.SaveChangesAsync();
         }
 
+        public async Task DeleteJoke(string id)
+        {
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+            {
+                Console.WriteLine("Error!");
+            }
+            if (id != null)
+            {
+                var jokeDb = context.Jokes.FirstOrDefault(x => x.JokeID == id);
+                context.Jokes.Remove(jokeDb);
+                await context.SaveChangesAsync();
+            }
+        }
+
         public JokeViewModel GetDetailsById(string id)
         {
             JokeViewModel joke = context.Jokes

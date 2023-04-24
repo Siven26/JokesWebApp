@@ -62,7 +62,7 @@ namespace JokesWebApp.Controllers
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Update(JokeViewModel model)
+        public async Task<IActionResult> UpdateJoke(JokeViewModel model)
         {
             if (this.ModelState.IsValid == false)
             {
@@ -72,6 +72,35 @@ namespace JokesWebApp.Controllers
             await this.jokeService.UpdateAsync(model);
 
             return this.RedirectToAction("Jokes");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteJoke(string id)
+        {
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest("Invalid joke id");
+            }
+
+            var joke = jokeService.GetDetailsById(id);
+            if (joke == null)
+            {
+                return RedirectToAction("Jokes");
+            }
+            return View(joke);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteJokeConfirmed(string id)
+        {
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest("Invalid joke id");
+            }
+
+            await jokeService.DeleteJoke(id);
+
+            return RedirectToAction("Jokes");
         }
     }
 }

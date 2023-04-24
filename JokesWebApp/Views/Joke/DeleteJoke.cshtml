@@ -1,0 +1,25 @@
+﻿@model JokeViewModel
+
+<DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <form method="post" asp-action="DeleteJokeConfirmed" asp-route-id="@Model.JokeID">
+        <h1>Are you sure you want to delete this joke?</h1>
+        <div class="joke-list">
+            <div class="joke">
+                <h2>@Model.JokeName</h2>
+                <p>Category: @Model.JokeCategory</p>
+                <p>@Model.JokeText</p>
+                <p>Date added: @Model.JokeDateAdded.ToShortDateString()</p>
+                <div class="joke-actions">
+                    <button type="submit" class="btn btn-danger mx-1">Yes</button>
+                    <a asp-controller="Joke" asp-action="Jokes" class="btn btn-primary mx-1">No</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
