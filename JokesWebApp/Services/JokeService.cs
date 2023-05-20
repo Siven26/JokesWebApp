@@ -3,41 +3,51 @@ using JokesWebApp.Data.DataModels;
 using JokesWebApp.Services.ViewModels;
 using JokesWebApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace JokesWebApp.Services
 {
     public class JokeService : IJokeService
     {
-        private readonly ApplicationDbContext context;
-        public JokeService(ApplicationDbContext post)
+        private readonly ApplicationDbContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public JokeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
-            context = post;
+            _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public List<JokeViewModel> GetAll()
         {
-            return context.Jokes.Select(joke => new JokeViewModel()
-            {
-                JokeID = joke.JokeID,
-                JokeName = joke.JokeName,
-                JokeCategory = joke.JokeCategory,
-                JokeText = joke.JokeText,
-                JokeDateAdded = joke.JokeDateAdded,
-            }).ToList();
+            return _context.Jokes.Include(j => j.User)
+                .Select(joke => new JokeViewModel()
+                {
+                    JokeID = joke.JokeID,
+                    JokeName = joke.JokeName,
+                    JokeCategory = joke.JokeCategory,
+                    JokeText = joke.JokeText,
+                    JokeDateAdded = joke.JokeDateAdded,
+                    CreatorEmail = joke.User.Email
+                })
+                .ToList();
         }
 
         public async Task CreateAsync(JokeViewModel model)
         {
-            Joke joke = new Joke();
+            string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            joke.JokeID = Guid.NewGuid().ToString();
-            joke.JokeName = model.JokeName;
-            joke.JokeCategory = model.JokeCategory;
-            joke.JokeText = model.JokeText;
-            joke.JokeDateAdded = model.JokeDateAdded;
+            Joke joke = new Joke
+            {
+                JokeID = Guid.NewGuid().ToString(),
+                JokeName = model.JokeName,
+                JokeCategory = model.JokeCategory,
+                JokeText = model.JokeText,
+                JokeDateAdded = model.JokeDateAdded,
+                UserID = userId
+            };
 
-            await context.Jokes.AddAsync(joke);
-            await context.SaveChangesAsync();
+            await _context.Jokes.AddAsync(joke);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteJoke(string id)
@@ -48,15 +58,16 @@ namespace JokesWebApp.Services
             }
             if (id != null)
             {
-                var jokeDb = context.Jokes.FirstOrDefault(x => x.JokeID == id);
-                context.Jokes.Remove(jokeDb);
-                await context.SaveChangesAsync();
+                var jokeDb = _context.Jokes.FirstOrDefault(x => x.JokeID == id);
+                _context.Jokes.Remove(jokeDb);
+                await _context.SaveChangesAsync();
             }
         }
 
         public JokeViewModel GetDetailsById(string id)
         {
-            JokeViewModel joke = context.Jokes
+            JokeViewModel joke = _context.Jokes
+                .Include(j => j.User)
                 .Select(joke => new JokeViewModel
                 {
                     JokeID = joke.JokeID,
@@ -64,6 +75,7 @@ namespace JokesWebApp.Services
                     JokeCategory = joke.JokeCategory,
                     JokeText = joke.JokeText,
                     JokeDateAdded = joke.JokeDateAdded,
+                    CreatorEmail = joke.User.Email
                 }).SingleOrDefault(joke => joke.JokeID == id);
 
             return joke;
@@ -71,7 +83,7 @@ namespace JokesWebApp.Services
 
         public JokeViewModel UpdateById(string id)
         {
-            JokeViewModel joke = context.Jokes
+            JokeViewModel joke = _context.Jokes
                 .Select(joke => new JokeViewModel
                 {
                     JokeID = joke.JokeID,
@@ -86,7 +98,7 @@ namespace JokesWebApp.Services
 
         public async Task UpdateAsync(JokeViewModel model)
         {
-            Joke joke = context.Jokes.Find(model.JokeID);
+            Joke joke = _context.Jokes.Find(model.JokeID);
 
             bool isJokeNull = joke == null;
             if (isJokeNull)
@@ -99,8 +111,8 @@ namespace JokesWebApp.Services
             joke.JokeText = model.JokeText;
             joke.JokeDateAdded = model.JokeDateAdded;
 
-            context.Jokes.Update(joke);
-            await context.SaveChangesAsync();
+            _context.Jokes.Update(joke);
+            await _context.SaveChangesAsync();
         }
     }
 }

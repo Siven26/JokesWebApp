@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-using JokesWebApp.Data.DataModels;
 
 namespace JokesWebApp.Services.ViewModels
 {
@@ -20,5 +19,7 @@ namespace JokesWebApp.Services.ViewModels
 
         [DefaultValue("getdate()")]
         public DateTime JokeDateAdded { get; set; } = DateTime.Now;
+
+        public string CreatorEmail { get; set; }
     }
 }

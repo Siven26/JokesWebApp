@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace JokesWebApp.Data.DataModels
@@ -19,5 +20,8 @@ namespace JokesWebApp.Data.DataModels
 
         [DefaultValue("getdate()")]
         public DateTime JokeDateAdded { get; set; }
+
+        public string UserID { get; set; }
+        public IdentityUser User { get; set; }
     }
 }

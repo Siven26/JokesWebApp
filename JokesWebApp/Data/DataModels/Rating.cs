@@ -9,9 +9,6 @@ namespace JokesWebApp.Data.DataModels
         [Key]
         public string RatingID { get; set; }
 
-        [ForeignKey("User")]
-        public string UserID { get; set; }
-
         [ForeignKey("Joke")]
         public string JokeID { get; set; }
 

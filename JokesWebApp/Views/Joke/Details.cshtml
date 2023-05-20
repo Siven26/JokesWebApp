@@ -61,6 +61,7 @@
         <div class="joke-list">
             <div class="joke">
                 <h2>@Model.JokeName</h2>
+                <p class="joke-creator">Posted by: @Model.CreatorEmail.Split('@')[0]</p>
                 <p>Category: @Model.JokeCategory</p>
                 <p>@Model.JokeText</p>
                 <p>Date added: @Model.JokeDateAdded.ToShortDateString()</p>

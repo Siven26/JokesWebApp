@@ -1,9 +1,7 @@
 ﻿using JokesWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using JokesWebApp.Services.ViewModels;
-using Microsoft.AspNetCore.Cors.Infrastructure;
-using JokesWebApp.Data.DataModels;
-using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JokesWebApp.Controllers
 {
@@ -39,6 +37,7 @@ namespace JokesWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult AddJoke()
         {
             return View();

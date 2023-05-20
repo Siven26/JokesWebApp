@@ -13,7 +13,6 @@ namespace JokesWebApp.Data
         }
 
         public DbSet<Joke> Jokes { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<UserJokeComment> UserJokeComments { get; set; }
         public DbSet<Rating> Ratings { get; set; }
@@ -21,7 +20,7 @@ namespace JokesWebApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Rating>()
-            .HasIndex(r => new { r.JokeID, r.UserID })
+            .HasIndex(r => new { r.JokeID})
             .IsUnique();
 
             base.OnModelCreating(modelBuilder);
