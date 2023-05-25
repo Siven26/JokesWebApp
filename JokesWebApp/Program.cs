@@ -16,6 +16,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddTransient<JokeService, JokeService>();
+builder.Services.AddTransient<CommentService, CommentService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();

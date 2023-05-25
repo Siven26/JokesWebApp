@@ -1,0 +1,31 @@
+﻿@model CommentViewModel
+
+@{
+    ViewData["Title"] = $"Update comment by {Model.CreatorEmail.Split('@')[0]}";
+}
+
+<div>
+    <h1>Update:</h1>
+</div>
+<div>
+    <form asp-action="UpdateComment" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="CommentID" />
+        <input type="hidden" asp-for="JokeID" />
+
+        <div class="form">
+            <label asp-for="CommentText"></label>
+            <textarea asp-for="CommentText"></textarea>
+            <span asp-validation-for="CommentText" class="text-danger"></span>
+        </div>
+
+        <div class="buttons">
+            <input type="submit" value="Save" />
+            <a asp-controller="Comment" asp-action="Comments" asp-route-id="@Model.JokeID">Back</a>
+        </div>
+    </form>
+</div>
+
+
+

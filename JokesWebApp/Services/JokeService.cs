@@ -19,7 +19,7 @@ namespace JokesWebApp.Services
 
         public List<JokeViewModel> GetAll()
         {
-            return _context.Jokes.Include(j => j.User)
+            return _context.Jokes.Include(j => j.User).Include(j => j.Comments)
                 .Select(joke => new JokeViewModel()
                 {
                     JokeID = joke.JokeID,
@@ -27,7 +27,8 @@ namespace JokesWebApp.Services
                     JokeCategory = joke.JokeCategory,
                     JokeText = joke.JokeText,
                     JokeDateAdded = joke.JokeDateAdded,
-                    CreatorEmail = joke.User.Email
+                    CreatorEmail = joke.User.Email,
+                    CommentsCount = joke.Comments.Count(),
                 })
                 .ToList();
         }
@@ -55,30 +56,58 @@ namespace JokesWebApp.Services
             if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
             {
                 Console.WriteLine("Error!");
+                return;
             }
-            if (id != null)
+
+            var jokeDb = _context.Jokes.Include(j => j.Comments).FirstOrDefault(x => x.JokeID == id);
+            if (jokeDb == null)
             {
-                var jokeDb = _context.Jokes.FirstOrDefault(x => x.JokeID == id);
-                _context.Jokes.Remove(jokeDb);
-                await _context.SaveChangesAsync();
+                Console.WriteLine("Joke not found!");
+                return;
             }
+
+            foreach (var comment in jokeDb.Comments)
+            {
+                _context.Comments.Remove(comment);
+            }
+
+            _context.Jokes.Remove(jokeDb);
+
+            await _context.SaveChangesAsync();
         }
 
         public JokeViewModel GetDetailsById(string id)
         {
-            JokeViewModel joke = _context.Jokes
+            var joke = _context.Jokes
                 .Include(j => j.User)
-                .Select(joke => new JokeViewModel
-                {
-                    JokeID = joke.JokeID,
-                    JokeName = joke.JokeName,
-                    JokeCategory = joke.JokeCategory,
-                    JokeText = joke.JokeText,
-                    JokeDateAdded = joke.JokeDateAdded,
-                    CreatorEmail = joke.User.Email
-                }).SingleOrDefault(joke => joke.JokeID == id);
+                .Include(j => j.Comments)
+                    .ThenInclude(c => c.User)
+                .SingleOrDefault(j => j.JokeID == id);
 
-            return joke;
+            if (joke == null)
+            {
+                return null;
+            }
+
+            var jokeViewModel = new JokeViewModel
+            {
+                JokeID = joke.JokeID,
+                JokeName = joke.JokeName,
+                JokeCategory = joke.JokeCategory,
+                JokeText = joke.JokeText,
+                JokeDateAdded = joke.JokeDateAdded,
+                CreatorEmail = joke.User.Email,
+                Comments = joke.Comments.Select(comment => new CommentViewModel
+                {
+                    CommentID = comment.CommentID,
+                    CommentText = comment.CommentText,
+                    CommentDateAdded = comment.CommentDateAdded,
+                    JokeID = joke.JokeID,
+                    CreatorEmail = comment.User.Email
+                }).ToList()
+            };
+
+            return jokeViewModel;
         }
 
         public JokeViewModel UpdateById(string id)

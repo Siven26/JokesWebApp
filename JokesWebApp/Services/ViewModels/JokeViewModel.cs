@@ -21,5 +21,7 @@ namespace JokesWebApp.Services.ViewModels
         public DateTime JokeDateAdded { get; set; } = DateTime.Now;
 
         public string CreatorEmail { get; set; }
+        public int CommentsCount { get; set; }
+        public List<CommentViewModel> Comments { get; set; }
     }
 }

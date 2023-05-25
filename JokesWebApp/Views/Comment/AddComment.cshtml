@@ -1,0 +1,27 @@
+﻿@model CommentViewModel
+
+<DOCTYPE html>
+    <html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <form method="post" asp-action="AddComment">
+            <div class="form-container">
+                <input type="hidden" asp-for="JokeID" />
+                <p><label asp-for="CommentText">Comment:</label></p>
+                <textarea asp-for="CommentText" class="form-field" rows="5" required></textarea>
+            </div>
+            <div class="submit-button-container">
+                <input type="submit" class="submit-button" value="Add" />
+            </div>
+            <div class="back-button-container">
+                <a asp-controller="Joke" asp-action="Details" asp-route-id="@Model.JokeID" class="back-button">Back</a>
+            </div>
+        </form>
+    </body>
+</html>
+</DOCTYPE>
+

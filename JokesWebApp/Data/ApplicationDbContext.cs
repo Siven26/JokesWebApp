@@ -14,7 +14,6 @@ namespace JokesWebApp.Data
 
         public DbSet<Joke> Jokes { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<UserJokeComment> UserJokeComments { get; set; }
         public DbSet<Rating> Ratings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

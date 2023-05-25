@@ -63,7 +63,7 @@ namespace JokesWebApp.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> UpdateJoke(JokeViewModel model)
         {
-            if (this.ModelState.IsValid == false)
+            if (this.ModelState.IsValid == true)
             {
                 return this.View(model);
             }

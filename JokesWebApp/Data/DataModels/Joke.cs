@@ -23,5 +23,6 @@ namespace JokesWebApp.Data.DataModels
 
         public string UserID { get; set; }
         public IdentityUser User { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
