@@ -62,6 +62,7 @@
                 <p class="joke-date">Date added: @joke.JokeDateAdded.ToShortDateString()</p>
                 <a asp-controller="Joke" asp-action="Details" asp-route-id="@joke.JokeID" class="btn btn-primary mx-1">Read More</a>
                 <a asp-controller="Comment" asp-action="Comments" asp-route-id="@joke.JokeID">Comments: @joke.CommentsCount</a>
+                <a asp-controller="Rating" asp-action="Ratings" asp-route-id="@joke.JokeID">Ratings: @joke.RatingsCount</a>
                 @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == joke.CreatorEmail)
                 {
                     <a asp-controller="Joke" asp-action="Update" asp-route-id="@joke.JokeID" class="btn btn-primary mx-1">Update Joke</a>

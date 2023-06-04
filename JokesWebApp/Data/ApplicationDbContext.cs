@@ -18,10 +18,6 @@ namespace JokesWebApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Rating>()
-            .HasIndex(r => new { r.JokeID})
-            .IsUnique();
-
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<IdentityUserLogin<string>>(b =>

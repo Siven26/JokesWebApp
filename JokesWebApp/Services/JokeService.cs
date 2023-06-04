@@ -11,6 +11,7 @@ namespace JokesWebApp.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
+
         public JokeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
@@ -20,15 +21,16 @@ namespace JokesWebApp.Services
         public List<JokeViewModel> GetAll()
         {
             return _context.Jokes.Include(j => j.User).Include(j => j.Comments)
-                .Select(joke => new JokeViewModel()
+                .Select(joke => new JokeViewModel
                 {
                     JokeID = joke.JokeID,
                     JokeName = joke.JokeName,
                     JokeCategory = joke.JokeCategory,
                     JokeText = joke.JokeText,
                     JokeDateAdded = joke.JokeDateAdded,
-                    CreatorEmail = joke.User.Email,
                     CommentsCount = joke.Comments.Count(),
+                    RatingsCount = joke.Ratings.Count(),
+                    CreatorEmail = joke.User.Email
                 })
                 .ToList();
         }
@@ -59,7 +61,11 @@ namespace JokesWebApp.Services
                 return;
             }
 
-            var jokeDb = _context.Jokes.Include(j => j.Comments).FirstOrDefault(x => x.JokeID == id);
+            var jokeDb = _context.Jokes
+                .Include(j => j.Comments)
+                .Include(j => j.Ratings)
+                .FirstOrDefault(x => x.JokeID == id);
+
             if (jokeDb == null)
             {
                 Console.WriteLine("Joke not found!");
@@ -71,10 +77,16 @@ namespace JokesWebApp.Services
                 _context.Comments.Remove(comment);
             }
 
+            foreach (var rating in jokeDb.Ratings)
+            {
+                _context.Ratings.Remove(rating);
+            }
+
             _context.Jokes.Remove(jokeDb);
 
             await _context.SaveChangesAsync();
         }
+
 
         public JokeViewModel GetDetailsById(string id)
         {
@@ -82,6 +94,7 @@ namespace JokesWebApp.Services
                 .Include(j => j.User)
                 .Include(j => j.Comments)
                     .ThenInclude(c => c.User)
+                .Include(j => j.Ratings)
                 .SingleOrDefault(j => j.JokeID == id);
 
             if (joke == null)
@@ -104,6 +117,14 @@ namespace JokesWebApp.Services
                     CommentDateAdded = comment.CommentDateAdded,
                     JokeID = joke.JokeID,
                     CreatorEmail = comment.User.Email
+                }).ToList(),
+                Ratings = joke.Ratings.Select(rating => new RatingViewModel
+                {
+                    RatingID = rating.RatingID,
+                    RatingValue = rating.RatingValue,
+                    RatingDateAdded = rating.RatingDateAdded,
+                    JokeID = joke.JokeID,
+                    CreatorEmail = rating.User.Email,
                 }).ToList()
             };
 

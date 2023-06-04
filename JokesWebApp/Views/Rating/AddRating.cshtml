@@ -1,0 +1,30 @@
+﻿@model RatingViewModel
+
+<DOCTYPE html>
+    <html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <form method="post" asp-action="AddRating">
+            <input type="hidden" asp-for="JokeID" value="@Model.JokeID" />
+            <div class="form-group">
+                <label for="ratingValue">Rating:</label><br />
+                <input type="radio" id="ratingValue" name="ratingValue" value="1" required /> 1
+                <input type="radio" id="ratingValue" name="ratingValue" value="2" required /> 2
+                <input type="radio" id="ratingValue" name="ratingValue" value="3" required /> 3
+                <input type="radio" id="ratingValue" name="ratingValue" value="4" required /> 4
+                <input type="radio" id="ratingValue" name="ratingValue" value="5" required /> 5
+            </div>
+            <div class="submit-button-container">
+                <input type="submit" class="submit-button" value="Add" />
+            </div>
+            <div class="back-button-container">
+                <a asp-controller="Joke" asp-action="Details" asp-route-id="@Model.JokeID" class="back-button">Back</a>
+            </div>
+        </form>
+    </body>
+</html>
+</DOCTYPE>

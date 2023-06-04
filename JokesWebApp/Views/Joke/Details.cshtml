@@ -67,7 +67,7 @@
                 <p>Date added: @Model.JokeDateAdded.ToShortDateString()</p>
                 <div class="joke-actions">
                     <a asp-controller="Comment" asp-action="AddComment" asp-route-jokeId="@Model.JokeID">Comment</a>
-                    <a href="#">Rate</a>
+                    <a asp-controller="Rating" asp-action="AddRating" asp-route-jokeId="@Model.JokeID">Rate</a>
                     <a asp-controller="Joke" asp-action="Jokes">Back</a>
                 </div>
             </div>

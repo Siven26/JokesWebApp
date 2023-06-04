@@ -1,7 +1,5 @@
 using JokesWebApp.Data;
 using JokesWebApp.Services;
-using JokesWebApp.Services.Interfaces;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +15,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddTransient<JokeService, JokeService>();
 builder.Services.AddTransient<CommentService, CommentService>();
+builder.Services.AddTransient<RatingService, RatingService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();

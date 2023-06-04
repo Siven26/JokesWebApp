@@ -19,9 +19,10 @@ namespace JokesWebApp.Services.ViewModels
 
         [DefaultValue("getdate()")]
         public DateTime JokeDateAdded { get; set; } = DateTime.Now;
-
-        public string CreatorEmail { get; set; }
         public int CommentsCount { get; set; }
         public List<CommentViewModel> Comments { get; set; }
+        public int RatingsCount { get; set; }
+        public List<RatingViewModel> Ratings { get; set; }
+        public string CreatorEmail { get; set; }
     }
 }

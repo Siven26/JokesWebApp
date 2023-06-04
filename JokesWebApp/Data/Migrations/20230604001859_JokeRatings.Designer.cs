@@ -4,6 +4,7 @@ using JokesWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JokesWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230604001859_JokeRatings")]
+    partial class JokeRatings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,7 +347,7 @@ namespace JokesWebApp.Data.Migrations
             modelBuilder.Entity("JokesWebApp.Data.DataModels.Rating", b =>
                 {
                     b.HasOne("JokesWebApp.Data.DataModels.Joke", "Joke")
-                        .WithMany("Ratings")
+                        .WithMany()
                         .HasForeignKey("JokeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -415,8 +417,6 @@ namespace JokesWebApp.Data.Migrations
             modelBuilder.Entity("JokesWebApp.Data.DataModels.Joke", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

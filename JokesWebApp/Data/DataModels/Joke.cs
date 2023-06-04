@@ -10,19 +10,19 @@ namespace JokesWebApp.Data.DataModels
         public string JokeID { get; set; }
 
         [Required]
-        public string JokeName { get; set;}
+        public string JokeName { get; set; }
 
         [Required]
-        public string JokeCategory { get; set;}
+        public string JokeCategory { get; set; }
 
         [Required]
-        public string JokeText { get; set;}
+        public string JokeText { get; set; }
 
         [DefaultValue("getdate()")]
         public DateTime JokeDateAdded { get; set; }
-
         public string UserID { get; set; }
         public IdentityUser User { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }
