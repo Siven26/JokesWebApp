@@ -1,0 +1,29 @@
+﻿@model ComedianViewModel
+
+<DOCTYPE html>
+    <html>
+    <head>
+    </head>
+    <body>
+        <form method="post" asp-action="DeleteComedianConfirmed" asp-route-id="@Model.ComedianID">
+            <input type="hidden" name="comedianId" value="@Model.ComedianID" />
+            <h1>Are you sure you want to delete this comedian?</h1>
+            <div class="comedian-list">
+                <div class="comedian">
+                    <h2>@Model.ComedianName</h2>
+                    <img src="https://localhost:7058/images/comedian/@Model.ComedianImage" alt="comedian picture" />
+                    <p>@Model.ComedianDescription</p>
+                    <div class="comedian-actions">
+                        <button type="submit" class="btn btn-danger mx-1">Yes</button>
+                        <a asp-controller="Comedian" asp-action="Comedians" class="btn btn-primary mx-1">No</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+
+
+
+
+

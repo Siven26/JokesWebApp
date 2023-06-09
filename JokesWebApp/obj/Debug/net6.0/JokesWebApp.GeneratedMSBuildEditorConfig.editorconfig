@@ -20,6 +20,22 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Comedian/AddComedian.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tZWRpYW5cQWRkQ29tZWRpYW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Comedian/Comedians.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tZWRpYW5cQ29tZWRpYW5zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Comedian/DeleteComedian.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tZWRpYW5cRGVsZXRlQ29tZWRpYW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Comedian/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tZWRpYW5cVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Comment/AddComment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxBZGRDb21tZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

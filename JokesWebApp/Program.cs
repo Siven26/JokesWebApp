@@ -16,6 +16,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddTransient<JokeService, JokeService>();
 builder.Services.AddTransient<CommentService, CommentService>();
 builder.Services.AddTransient<RatingService, RatingService>();
+builder.Services.AddTransient<ComedianService, ComedianService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();

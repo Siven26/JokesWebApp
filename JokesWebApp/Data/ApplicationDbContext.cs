@@ -1,5 +1,4 @@
 ﻿using JokesWebApp.Data.DataModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,16 +14,7 @@ namespace JokesWebApp.Data
         public DbSet<Joke> Jokes { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Rating> Ratings { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<IdentityUserLogin<string>>(b =>
-            {
-                b.HasKey(l => new { l.LoginProvider, l.ProviderKey });
-            });
-        }
+        public DbSet<Comedian> Comedians { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
