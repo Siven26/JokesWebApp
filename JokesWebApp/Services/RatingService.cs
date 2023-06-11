@@ -3,10 +3,11 @@ using JokesWebApp.Data;
 using JokesWebApp.Services.ViewModels;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using JokesWebApp.Services.Interfaces;
 
 namespace JokesWebApp.Services
 {
-    public class RatingService
+    public class RatingService : IRatingService
     {
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;

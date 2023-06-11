@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IZRqB4EZJupjWogM6a21/JBn5MQh4i5dW3eAmKHXgmA=",
+  "Hash": "QY09QNhwPKJqQ13BRbc0AZwu3jX/n1/hUZg671DObnY=",
   "Source": "JokesWebApp",
   "BasePath": "_content/JokesWebApp",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\images\\comedian\\certTemplate233847072.png",
+      "SourceId": "JokesWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\",
+      "BasePath": "_content/JokesWebApp",
+      "RelativePath": "images/comedian/certTemplate233847072.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\comedian\\certTemplate233847072.png"
     },
     {
       "Identity": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\js\\site.js",

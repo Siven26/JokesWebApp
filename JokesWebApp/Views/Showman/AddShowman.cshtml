@@ -1,0 +1,36 @@
+﻿@model ShowmanViewModel
+
+<DOCTYPE html>
+    <html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <form method="post" asp-action="AddShowman" enctype="multipart/form-data">
+            <div class="form-container">
+                <p><label asp-for="ShowmanName">Showman Name:</label></p>
+                <input asp-for="ShowmanName" class="form-field" required />
+
+                <p><label asp-for="ShowmanImage">Showman Image:</label></p>
+                <input type="file" name="file" asp-for="ShowmanImage" class="form-field" />
+
+                <p><label asp-for="ShowmanDescription">Showman Description:</label></p>
+                <textarea asp-for="ShowmanDescription" class="form-field" rows="5" required></textarea>
+            </div>
+            <div class="submit-button-container">
+                <input type="submit" class="submit-button" value="Add" />
+            </div>
+            <div class="back-button-container">
+                <a asp-controller="Showman" asp-action="Showmans" class="back-button">Back</a>
+            </div>
+        </form>
+    </body>
+</html>
+</DOCTYPE>
+
+
+
+
+

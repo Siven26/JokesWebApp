@@ -17,6 +17,7 @@ builder.Services.AddTransient<JokeService, JokeService>();
 builder.Services.AddTransient<CommentService, CommentService>();
 builder.Services.AddTransient<RatingService, RatingService>();
 builder.Services.AddTransient<ComedianService, ComedianService>();
+builder.Services.AddTransient<ShowmanService, ShowmanService>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddHttpContextAccessor();

@@ -1,0 +1,39 @@
+﻿@model ShowmanViewModel
+
+@{
+    ViewData["Title"] = $"Update - {Model.ShowmanName}";
+}
+
+
+<div>
+    <h1>Update: <b>@Model.ShowmanName</b></h1>
+</div>
+<div>
+    <form asp-action="UpdateShowman" method="post" enctype="multipart/form-data">
+        <div class="text-danger">
+            <input type="hidden" asp-for="ShowmanID" />
+            <input type="hidden" asp-for="ShowmanImage" />
+            <div class="form">
+                <label asp-for="ShowmanName">Showman Name:</label>
+                <input asp-for="ShowmanName" />
+                <span asp-validation-for="ShowmanName"></span>
+            </div>
+            <div class="form">
+                <label asp-for="ShowmanImage">Showman Image:</label>
+                <input type="file" name="file" />
+                <span asp-validation-for="ShowmanImage"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShowmanDescription">Showman Description:</label>
+                <textarea asp-for="ShowmanDescription"></textarea>
+                <span asp-validation-for="ShowmanDescription"></span>
+            </div>
+            <div class="buttons">
+                <input type="submit" value="Save" />
+                <a asp-controller="Showman" asp-action="Showmans">Back</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+

@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\images\\comedian\\certTemplate233847072.png",
+      "PackagePath": "staticwebassets\\images\\comedian\\certTemplate233847072.png"
+    },
+    {
       "Id": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

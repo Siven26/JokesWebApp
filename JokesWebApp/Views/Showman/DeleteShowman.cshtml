@@ -1,0 +1,29 @@
+﻿@model ShowmanViewModel
+
+<DOCTYPE html>
+    <html>
+    <head>
+    </head>
+    <body>
+        <form method="post" asp-action="DeleteShowmanConfirmed" asp-route-id="@Model.ShowmanID">
+            <input type="hidden" name="showmanId" value="@Model.ShowmanID" />
+            <h1>Are you sure you want to delete this showman?</h1>
+            <div class="showman-list">
+                <div class="showman">
+                    <h2>@Model.ShowmanName</h2>
+                    <img src="https://localhost:7058/images/showman/@Model.ShowmanImage" alt="showman picture" />
+                    <p>@Model.ShowmanDescription</p>
+                    <div class="showman-actions">
+                        <button type="submit" class="btn btn-danger mx-1">Yes</button>
+                        <a asp-controller="Showman" asp-action="Showmans" class="btn btn-primary mx-1">No</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+
+
+
+
+

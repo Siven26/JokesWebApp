@@ -1,0 +1,31 @@
+﻿@using System.Security.Claims
+@model List<ShowmanViewModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <div class="showman-list">
+        @foreach (var showman in Model)
+        {
+                <div class="showman">
+                    <h2 class="showman-title">@showman.ShowmanName</h2>
+                    <img src="https://localhost:7058/images/showman/@showman.ShowmanImage" alt="showman picture" />
+                    <p class="comedian-description">@showman.ShowmanDescription</p>
+
+                    <a asp-controller="Showman" asp-action="Update" asp-route-id="@showman.ShowmanID" class="btn btn-primary mx-1">Update Showman</a>
+                    <a asp-controller="Showman" asp-action="DeleteShowman" asp-route-id="@showman.ShowmanID" class="btn btn-danger mx-1">Delete Showman</a>
+                </div>
+        }
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+

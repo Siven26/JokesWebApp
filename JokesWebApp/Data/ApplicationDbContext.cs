@@ -15,6 +15,7 @@ namespace JokesWebApp.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Comedian> Comedians { get; set; }
+        public DbSet<Showman> Showmans { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

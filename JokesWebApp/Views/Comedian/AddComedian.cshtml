@@ -10,13 +10,13 @@
     <body>
         <form method="post" asp-action="AddComedian" enctype="multipart/form-data">
             <div class="form-container">
-                <p><label asp-for="ComedianName">Name:</label></p>
+                <p><label asp-for="ComedianName">Comedian Name:</label></p>
                 <input asp-for="ComedianName" class="form-field" required />
 
-                <p><label asp-for="ComedianImage">Image:</label></p>
+                <p><label asp-for="ComedianImage">Comedian Image:</label></p>
                 <input type="file" name="file" asp-for="ComedianImage" class="form-field" />
 
-                <p><label asp-for="ComedianDescription">Description:</label></p>
+                <p><label asp-for="ComedianDescription">Comedian Description:</label></p>
                 <textarea asp-for="ComedianDescription" class="form-field" rows="5" required></textarea>
             </div>
             <div class="submit-button-container">

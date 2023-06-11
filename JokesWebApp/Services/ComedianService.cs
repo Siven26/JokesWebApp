@@ -1,10 +1,11 @@
 ﻿using JokesWebApp.Data.DataModels;
 using JokesWebApp.Data;
 using JokesWebApp.Services.ViewModels;
+using JokesWebApp.Services.Interfaces;
 
 namespace JokesWebApp.Services
 {
-    public class ComedianService
+    public class ComedianService : IComedianService
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;

@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\comedian\" />
+    <Folder Include="wwwroot\images\showman\" />
   </ItemGroup>
 
 </Project>
