@@ -60,6 +60,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Home/WrongUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxXcm9uZ1VzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Visual Studio Projects/JokesWebApp/JokesWebApp/Views/Joke/AddJoke.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9rZVxBZGRKb2tlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

@@ -64,6 +64,29 @@ namespace JokesWebApp.Services
             }
         }
 
+        public CommentViewModel GetCommentDetailsById(string id)
+        {
+            var comment = _context.Comments
+                .Include(j => j.User)
+                .Include(j => j.Joke)
+                .SingleOrDefault(j => j.CommentID == id);
+
+            if (comment == null)
+            {
+                return null;
+            }
+
+            var commentViewModel = new CommentViewModel
+            {
+                CommentID = comment.CommentID,
+                CommentText = comment.CommentText,
+                CommentDateAdded = comment.CommentDateAdded,
+                CreatorEmail = comment.User.Email,
+            };
+
+            return commentViewModel;
+        }
+
         public CommentViewModel UpdateCommentById(string id)
         {
             Comment comment = _context.Comments.Include(c => c.User)

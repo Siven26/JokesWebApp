@@ -1,6 +1,7 @@
 ﻿using JokesWebApp.Services.ViewModels;
 using JokesWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JokesWebApp.Controllers
 {
@@ -24,6 +25,7 @@ namespace JokesWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddComedian()
         {
             return View();
@@ -43,6 +45,7 @@ namespace JokesWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Update(string id)
         {
             var model = comedianService.UpdateComedianById(id);
@@ -76,8 +79,6 @@ namespace JokesWebApp.Controllers
             return View(model);
         }
 
-
-
         private async Task DeleteOldComedianImage(string comedianId)
         {
             ComedianViewModel existingComedian = comedianService.GetComedianDetailsById(comedianId);
@@ -99,6 +100,7 @@ namespace JokesWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteComedian(string id)
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
@@ -117,11 +119,6 @@ namespace JokesWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteComedianConfirmed(string comedianId)
         {
-            if (string.IsNullOrEmpty(comedianId) || string.IsNullOrWhiteSpace(comedianId))
-            {
-                return BadRequest("Invalid comedian id");
-            }
-
             ComedianViewModel existingComedian = comedianService.GetComedianDetailsById(comedianId);
 
             if (existingComedian != null)

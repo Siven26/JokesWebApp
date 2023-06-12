@@ -14,7 +14,7 @@
         <div class="comment">
             <h3>Posted by: @comment.CreatorEmail.Split('@')[0]</h3>
             <p>@comment.CommentText</p>
-            @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == comment.CreatorEmail)
+            @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == comment.CreatorEmail || User.IsInRole("Admin"))
             {
                 <a asp-controller="Comment" asp-action="Update" asp-route-id="@comment.CommentID" class="btn btn-primary mx-1">Update Comment</a>
                 <a asp-controller="Comment" asp-action="DeleteComment" asp-route-id="@comment.CommentID" class="btn btn-danger mx-1">Delete Comment</a>

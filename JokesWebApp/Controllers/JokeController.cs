@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using JokesWebApp.Services.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace JokesWebApp.Controllers
 {
@@ -27,8 +28,8 @@ namespace JokesWebApp.Controllers
         {
             JokeViewModel joke = jokeService.GetDetailsById(id);
 
-            bool isCourseNull = joke == null;
-            if (isCourseNull)
+            bool isJokeNull = joke == null;
+            if (isJokeNull)
             {
                 return this.RedirectToAction("Jokes");
             }
@@ -54,9 +55,13 @@ namespace JokesWebApp.Controllers
         [HttpGet]
         public IActionResult Update(string id)
         {
-            JokeViewModel joke = this.jokeService.UpdateById(id);
-
-            return this.View(joke);
+            var joke = jokeService.GetDetailsById(id);
+            if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == joke.CreatorEmail || User.IsInRole("Admin"))
+            {
+                JokeViewModel jokeToUpdate = this.jokeService.UpdateById(id);
+                return this.View(jokeToUpdate);
+            }
+            return RedirectToAction("WrongUser", "Home");
         }
 
         [HttpPost]
@@ -76,27 +81,24 @@ namespace JokesWebApp.Controllers
         [HttpGet]
         public IActionResult DeleteJoke(string id)
         {
-            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+            var joke = jokeService.GetDetailsById(id);
+
+            if (joke == null)
             {
                 return BadRequest("Invalid joke id");
             }
 
-            var joke = jokeService.GetDetailsById(id);
-            if (joke == null)
+            if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == joke.CreatorEmail || User.IsInRole("Admin"))
             {
-                return RedirectToAction("Jokes");
+                var jokeToDelete = jokeService.GetDetailsById(id);
+                return View(jokeToDelete);
             }
-            return View(joke);
+            return RedirectToAction("WrongUser", "Home");
         }
 
         [HttpPost]
         public async Task<IActionResult> DeleteJokeConfirmed(string id)
         {
-            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
-            {
-                return BadRequest("Invalid joke id");
-            }
-
             await jokeService.DeleteJoke(id);
 
             return RedirectToAction("Jokes");

@@ -1,6 +1,8 @@
 ﻿using JokesWebApp.Services.ViewModels;
 using JokesWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace JokesWebApp.Controllers
 {
@@ -24,6 +26,7 @@ namespace JokesWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddShowman()
         {
             return View();
@@ -43,6 +46,7 @@ namespace JokesWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Update(string id)
         {
             var model = showmanService.UpdateShowmanById(id);
@@ -76,8 +80,6 @@ namespace JokesWebApp.Controllers
             return View(model);
         }
 
-
-
         private async Task DeleteOldShowmanImage(string showmanId)
         {
             ShowmanViewModel existingShowman = showmanService.GetShowmanDetailsById(showmanId);
@@ -99,6 +101,7 @@ namespace JokesWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteShowman(string id)
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
@@ -117,11 +120,6 @@ namespace JokesWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteShowmanConfirmed(string showmanId)
         {
-            if (string.IsNullOrEmpty(showmanId) || string.IsNullOrWhiteSpace(showmanId))
-            {
-                return BadRequest("Invalid showman id");
-            }
-
             ShowmanViewModel existingShowman = showmanService.GetShowmanDetailsById(showmanId);
 
             if (existingShowman != null)

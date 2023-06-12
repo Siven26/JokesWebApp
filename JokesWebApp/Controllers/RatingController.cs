@@ -2,6 +2,7 @@
 using JokesWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JokesWebApp.Controllers
 {
@@ -27,6 +28,7 @@ namespace JokesWebApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult AddRating(string jokeId)
         {
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

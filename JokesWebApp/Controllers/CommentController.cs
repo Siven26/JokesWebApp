@@ -1,6 +1,10 @@
 ﻿using JokesWebApp.Services.ViewModels;
 using JokesWebApp.Services;
 using Microsoft.AspNetCore.Mvc;
+using JokesWebApp.Data.DataModels;
+using System.Security.Claims;
+using JokesWebApp.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JokesWebApp.Controllers
 {
@@ -20,6 +24,8 @@ namespace JokesWebApp.Controllers
             return View(comments);
         }
 
+        [HttpGet]
+        [Authorize]
         public IActionResult AddComment(string jokeId)
         {
             var model = new CommentViewModel { JokeID = jokeId };
@@ -37,14 +43,13 @@ namespace JokesWebApp.Controllers
         [HttpGet]
         public IActionResult Update(string id)
         {
-            var model = commentService.UpdateCommentById(id);
-
-            if (model == null)
+            var comment = commentService.GetCommentDetailsById(id);
+            if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == comment.CreatorEmail || User.IsInRole("Admin"))
             {
-                return NotFound();
+                CommentViewModel commentToUpdate = commentService.UpdateCommentById(id);
+                return View(commentToUpdate);
             }
-
-            return View(model);
+            return RedirectToAction("WrongUser", "Home");
         }
 
         [HttpPost]
@@ -63,8 +68,19 @@ namespace JokesWebApp.Controllers
         [HttpGet]
         public IActionResult DeleteComment(string id)
         {
-            var model = commentService.UpdateCommentById(id);
-            return View(model);
+            var comment = commentService.GetCommentDetailsById(id);
+
+            if (comment == null)
+            {
+                return BadRequest("Invalid comment id");
+            }
+
+            if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == comment.CreatorEmail || User.IsInRole("Admin"))
+            {
+                var commentToDelete = commentService.UpdateCommentById(id);
+                return View(commentToDelete);
+            }
+            return RedirectToAction("WrongUser", "Home");
         }
 
         [HttpPost]

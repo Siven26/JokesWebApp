@@ -7,6 +7,7 @@ namespace JokesWebApp.Services.Interfaces
         List<CommentViewModel> GetAllComments(string id);
         Task CreateCommentAsync(CommentViewModel model);
         Task DeleteComment(string id);
+        CommentViewModel GetCommentDetailsById(string id);
         CommentViewModel UpdateCommentById(string id);
         Task UpdateCommentAsync(CommentViewModel model);
     }

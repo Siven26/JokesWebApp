@@ -1,4 +1,5 @@
 ﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
 @model List<ShowmanViewModel>
 
 <!DOCTYPE html>
@@ -15,9 +16,12 @@
                     <img src="https://localhost:7058/images/showman/@showman.ShowmanImage" alt="showman picture" />
                     <p class="comedian-description">@showman.ShowmanDescription</p>
 
+                    @if (User.IsInRole("Admin"))
+                    {
                     <a asp-controller="Showman" asp-action="Update" asp-route-id="@showman.ShowmanID" class="btn btn-primary mx-1">Update Showman</a>
                     <a asp-controller="Showman" asp-action="DeleteShowman" asp-route-id="@showman.ShowmanID" class="btn btn-danger mx-1">Delete Showman</a>
-                </div>
+                    }
+            </div>
         }
     </div>
 </body>
