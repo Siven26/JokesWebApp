@@ -21,6 +21,8 @@ builder.Services.AddTransient<ComedianService, ComedianService>();
 builder.Services.AddTransient<ShowmanService, ShowmanService>();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

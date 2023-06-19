@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZgoeBYzOTpVMlv6QNpZ7y5GpSKuO++yOchl1eWSLMNDKz1LiXwO9125VdL0mM2z7HWd9UMumIoa+xGxa5/8ERA==",
+  "dgSpecHash": "AERFb740CmJV7IZXoj/6AzA+w/lYXkdrUQaB9al2iykM3uwpmqwYRDlG3WXdoaX0zCC0IfM+uJv+9iGkBACqAQ==",
   "success": true,
   "projectFilePath": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\JokesWebApp.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,7 @@
     "C:\\Users\\Siven\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Siven\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Siven\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Siven\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Siven\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Siven\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\Siven\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

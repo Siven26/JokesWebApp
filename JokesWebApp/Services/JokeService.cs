@@ -4,16 +4,19 @@ using JokesWebApp.Services.ViewModels;
 using JokesWebApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Newtonsoft.Json;
 
 namespace JokesWebApp.Services
 {
     public class JokeService : IJokeService
     {
+        private readonly IHttpClientFactory _clientFactory;
         private readonly ApplicationDbContext _context;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public JokeService(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
+        public JokeService(IHttpClientFactory clientFactory, ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
         {
+            _clientFactory = clientFactory;
             _context = context;
             _httpContextAccessor = httpContextAccessor;
         }
@@ -162,6 +165,41 @@ namespace JokesWebApp.Services
             joke.JokeDateAdded = model.JokeDateAdded;
 
             _context.Jokes.Update(joke);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task PopulateDatabaseWithJokes()
+        {
+            const string baseUrl = "https://jokeapi.dev";
+            string[] categories = { "Programming", "Miscellaneous", "Dark", "Pun", "Spooky", "Christmas" };
+            string[] parameters = { "idRange=0-319" };
+
+            string requestUrl = $"{baseUrl}/joke/{string.Join(",", categories)}?{string.Join("&", parameters)}";
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var client = _clientFactory.CreateClient();
+                var json = await client.GetStringAsync(requestUrl);
+                var apiJoke = JsonConvert.DeserializeObject<JokeAPI>(json);
+                string userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                var joke = new Joke
+                {
+                    JokeID = Guid.NewGuid().ToString(),
+                    JokeName = "Joke",
+                    JokeCategory = apiJoke.Category,
+                    JokeText = apiJoke.Type == "single" ? apiJoke.Joke : apiJoke.Setup + " " + apiJoke.Delivery,
+                    JokeDateAdded = DateTime.Now,
+                    Comments = new List<Comment>(),
+                    Ratings = new List<Rating>(),
+                    UserID = userId
+                };
+
+                await _context.Jokes.AddAsync(joke);
+
+                await Task.Delay(1000);
+            }
+
             await _context.SaveChangesAsync();
         }
     }

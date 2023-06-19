@@ -103,5 +103,13 @@ namespace JokesWebApp.Controllers
 
             return RedirectToAction("Jokes");
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> PopulateJokes()
+        {
+            await jokeService.PopulateDatabaseWithJokes();
+            return RedirectToAction(nameof(Jokes));
+        }
     }
 }

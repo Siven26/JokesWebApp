@@ -10,5 +10,6 @@ namespace JokesWebApp.Services.Interfaces
         JokeViewModel GetDetailsById(string id);
         JokeViewModel UpdateById(string id);
         Task UpdateAsync(JokeViewModel model);
+        Task PopulateDatabaseWithJokes();
     }
 }
