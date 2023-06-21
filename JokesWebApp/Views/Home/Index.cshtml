@@ -2,7 +2,69 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, rgba(45,0,105,1) 0%, rgba(0,0,0,1) 100%);
+            color: #fff;
+        }
+
+        .heading {
+            color: #f8f8f2;
+            text-align: center;
+            font-size: 75px;
+            margin-top: 60px;
+        }
+
+        p {
+            color: #f8f8f2;
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 30px;
+        }
+
+        a {
+            color: #f8f8f2;
+            text-decoration: none;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 150px;
+            padding: 0.2em 0.5em;
+            text-decoration: none;
+            font-size: 25px;
+            text-align:center;
+            background-color: #f1c40f;
+            color: #282a36;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            margin-top: 40px;
+        }
+
+        .btn:hover {
+            background-color: #ba980d;
+            color: #ffffff;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+        }
+
+    </style>
+</head>
+<body>
+        <h1 class="heading">Welcome to the Jokes Central!</h1>
+        <p>This is your one-stop platform for all things humorous. Here, users can post their favorite jokes, comment on others', and rate them too! We also have special 'Comedians' and 'Showmans' sections for those who love learning more about their favorite humorists. </p>
+        <div class="button-container">
+            <a asp-controller="Comedian" asp-action="Comedians" class="btn">Dive into Comedians</a>
+            <a asp-controller="Joke" asp-action="Jokes" class="btn">Dive into Jokes</a>
+            <a asp-controller="Showman" asp-action="Showmans" class="btn">Dive into Showmen</a>
+        </div>
+</body>
+</html>

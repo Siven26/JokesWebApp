@@ -4,7 +4,51 @@
     <html>
     <head>
         <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(180deg, rgba(45,0,105,1) 0%, rgba(0,0,0,1) 100%);
+                color: #ffffff;
+            }
 
+            label {
+                font-size: 25px;
+                color: #ffffff;
+                margin-top: 10px;
+            }
+
+            .form-field {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 5px 0;
+                box-sizing: border-box;
+                border: 3px solid #ccc;
+                transition: 0.5s;
+                outline: none;
+                border-radius: 5px;
+                font-size: 20px;
+            }
+
+                .form-field:focus {
+                    border: 3px solid #555;
+                }
+
+            .btn {
+                display: inline-block;
+                padding: 0.5em 1em;
+                text-decoration: none;
+                font-size: 1.2em;
+                background-color: #f1c40f;
+                color: #282a36;
+                border-radius: 3px;
+                transition: background-color 0.3s ease;
+                margin: 1em 0;
+                text-align: center;
+            }
+
+                .btn:hover {
+                    background-color: #ba980d;
+                    color: #ffffff;
+                }
         </style>
     </head>
     <body>
@@ -14,17 +58,13 @@
                 <input asp-for="ComedianName" class="form-field" required />
 
                 <p><label asp-for="ComedianImage">Comedian Image:</label></p>
-                <input type="file" name="file" asp-for="ComedianImage" class="form-field" />
+                <input type="file" name="file" asp-for="ComedianImage" class="image-form-field" required />
 
                 <p><label asp-for="ComedianDescription">Comedian Description:</label></p>
                 <textarea asp-for="ComedianDescription" class="form-field" rows="5" required></textarea>
             </div>
-            <div class="submit-button-container">
-                <input type="submit" class="submit-button" value="Add" />
-            </div>
-            <div class="back-button-container">
-                <a asp-controller="Comedian" asp-action="Comedians" class="back-button">Back</a>
-            </div>
+                <input type="submit" class="btn" value="Add" />
+                <a asp-controller="Comedian" asp-action="Comedians" class="btn">Back</a>
         </form>
     </body>
 </html>

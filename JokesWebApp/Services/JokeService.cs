@@ -35,6 +35,7 @@ namespace JokesWebApp.Services
                     RatingsCount = joke.Ratings.Count(),
                     CreatorEmail = joke.User.Email
                 })
+                .OrderByDescending(joke => joke.JokeDateAdded)
                 .ToList();
         }
 

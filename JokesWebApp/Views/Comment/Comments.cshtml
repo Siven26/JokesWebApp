@@ -5,24 +5,69 @@
 <html>
 <head>
     <title>Comments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(35,0,82,1) 20%, rgba(35,0,82,1) 80%, rgba(0,0,0,1) 100%);
+            color: #ffffff;
+        }
+
+        .heading {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 30%;
+            padding: 0.2em 0.5em;
+            text-decoration: none;
+            font-size: 1em;
+            background-color: #f1c40f;
+            color: #282a36;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            margin: 0.5em 2%;
+            text-align: center;
+        }
+
+            .btn:hover {
+                background-color: #ba980d;
+                color: #ffffff;
+            }
+
+        .comment {
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+            margin-bottom: 2em;
+        }
+
+        .comment-heading, .comment-date {
+            font-size: 2.0em;
+            color: #ffffff;
+        }
+
+        .comment-text {
+            font-size: 1.8em;
+        }
+    </style>
 </head>
 <body>
-    <h1>Comments</h1>
+    <h1 class="heading">Comments</h1>
 
     @foreach (var comment in Model)
     {
         <div class="comment">
-            <h3>Posted by: @comment.CreatorEmail.Split('@')[0]</h3>
-            <p>@comment.CommentText</p>
+            <h3 class="comment-heading">Posted by: @comment.CreatorEmail.Split('@')[0]</h3>
+            <p class="comment-date">Last updated: @comment.CommentDateAdded.ToShortDateString()</p>
+            <p class="comment-text">@comment.CommentText</p>
             @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == comment.CreatorEmail || User.IsInRole("Admin"))
             {
-                <a asp-controller="Comment" asp-action="Update" asp-route-id="@comment.CommentID" class="btn btn-primary mx-1">Update Comment</a>
-                <a asp-controller="Comment" asp-action="DeleteComment" asp-route-id="@comment.CommentID" class="btn btn-danger mx-1">Delete Comment</a>
+                <a asp-controller="Comment" asp-action="Update" asp-route-id="@comment.CommentID" class="btn btn-primary">Update Comment</a>
+                <a asp-controller="Comment" asp-action="DeleteComment" asp-route-id="@comment.CommentID" class="btn btn-danger">Delete Comment</a>
             }
         </div>
     }
-
-    <a asp-controller="Joke" asp-action="Jokes">Back</a>
+    <a asp-controller="Joke" asp-action="Jokes" class="btn">Back</a>
 </body>
 </html>
 

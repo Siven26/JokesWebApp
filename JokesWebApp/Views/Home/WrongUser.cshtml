@@ -1,1 +1,51 @@
-﻿<h1>You are the wrong user to have access to this!</h1>
+﻿<DOCTYPE html>
+	<html>
+		<head>
+			<style>
+			body {
+				font-family: Arial, sans-serif;
+				background: linear-gradient(180deg, rgba(45,0,105,1) 0%, rgba(0,0,0,1) 100%);
+				color: #fff;
+			}
+
+			.heading {
+				color: #f8f8f2;
+				text-align: center;
+				font-size: 75px;
+				margin-top: 60px;
+			}
+
+			.btn {
+				display: inline-block;
+				width: 150px;
+				padding: 0.2em 0.5em;
+				text-decoration: none;
+				font-size: 25px;
+				background-color: #f1c40f;
+				color: #282a36;
+				border-radius: 3px;
+				transition: background-color 0.3s ease;
+				margin-top: 40px;
+			}
+
+				.btn:hover {
+					background-color: #ba980d;
+				}
+
+			.button-container {
+				display: flex;
+				justify-content: center;
+				gap: 80px;
+			}
+			</style>
+		</head>
+		<body>
+			<h1 class="heading">You are the wrong user to have access to this!</h1>
+			<div class="button-container">
+				<a asp-controller="Comedian" asp-action="Comedians" class="btn">Dive into Comedians</a>
+				<a asp-controller="Joke" asp-action="Jokes" class="btn">Dive into Jokes</a>
+				<a asp-controller="Showman" asp-action="Showmans" class="btn">Dive into Showmen</a>
+			</div>
+		</body>
+	</html>
+</DOCTYPE>

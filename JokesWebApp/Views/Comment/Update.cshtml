@@ -4,28 +4,77 @@
     ViewData["Title"] = $"Update comment by {Model.CreatorEmail.Split('@')[0]}";
 }
 
-<div>
-    <h1>Update:</h1>
-</div>
-<div>
-    <form asp-action="UpdateComment" method="post" enctype="multipart/form-data">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<DOCTYPE html>
+    <html>
+        <head>
+            <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(180deg, rgba(45,0,105,1) 0%, rgba(0,0,0,1) 100%);
+                color: #ffffff;
+            }
 
-        <input type="hidden" asp-for="CommentID" />
-        <input type="hidden" asp-for="JokeID" />
+            label {
+                font-size: 25px;
+                color: #ffffff;
+                margin-top: 10px;
+            }
 
-        <div class="form">
-            <label asp-for="CommentText"></label>
-            <textarea asp-for="CommentText"></textarea>
-            <span asp-validation-for="CommentText" class="text-danger"></span>
-        </div>
+            .form-field {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 5px 0;
+                box-sizing: border-box;
+                border: 3px solid #ccc;
+                transition: 0.5s;
+                outline: none;
+                border-radius: 5px;
+                font-size: 20px;
+            }
 
-        <div class="buttons">
-            <input type="submit" value="Save" />
-            <a asp-controller="Comment" asp-action="Comments" asp-route-id="@Model.JokeID">Back</a>
-        </div>
-    </form>
-</div>
+                .form-field:focus {
+                    border: 3px solid #555;
+                }
+
+
+            .btn {
+                display: inline-block;
+                padding: 0.5em 1em;
+                text-decoration: none;
+                font-size: 1.2em;
+                background-color: #f1c40f;
+                color: #282a36;
+                border-radius: 3px;
+                transition: background-color 0.3s ease;
+                margin: 1em 0;
+                text-align: center;
+            }
+
+                .btn:hover {
+                    background-color: #ba980d;
+                    color: #ffffff;
+                }
+            </style>
+        </head>
+        <body>
+            <form asp-action="UpdateComment" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="form-container">
+                <input type="hidden" asp-for="CommentID" />
+                <input type="hidden" asp-for="JokeID" />
+
+                <label asp-for="CommentText"></label>
+                <textarea asp-for="CommentText" rows="5" class="form-field"></textarea>
+                <span asp-validation-for="CommentText" class="text-danger"></span>
+
+                <input type="submit" class="btn" value="Save" />
+                <a asp-controller="Comment" asp-action="Comments" asp-route-id="@Model.JokeID" class="btn">Back</a>
+            </div>
+            </form>
+        </body>
+    </html>
+</DOCTYPE>
 
 
 

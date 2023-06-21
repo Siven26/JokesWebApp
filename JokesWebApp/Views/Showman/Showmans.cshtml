@@ -5,7 +5,75 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(35,0,82,1) 20%, rgba(35,0,82,1) 80%, rgba(0,0,0,1) 100%);
+            color: #ffffff;
+        }
 
+        .showman-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .showman {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1em;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+            padding: 1em;
+        }
+
+        .showman-title {
+            font-size: 2.5em;
+        }
+
+        .showman-content {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin: 1em 0;
+        }
+
+        .showman-description {
+            flex: 1;
+            margin-left: 1em;
+            font-size: 1.8em;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.2em 0.5em;
+            text-decoration: none;
+            font-size: 1em;
+            background-color: #f1c40f;
+            color: #282a36;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            margin-top: 1em;
+            text-align: center;
+        }
+
+            .btn:hover {
+                background-color: #ba980d;
+                color: #ffffff;
+            }
+
+        .buttons {
+            display: flex;
+            gap: 1em;
+        }
+    </style>
 </head>
 <body>
     <div class="showman-list">
@@ -13,13 +81,17 @@
         {
                 <div class="showman">
                     <h2 class="showman-title">@showman.ShowmanName</h2>
-                    <img src="https://localhost:7058/images/showman/@showman.ShowmanImage" alt="showman picture" />
-                    <p class="comedian-description">@showman.ShowmanDescription</p>
+                    <div class="showman-content">
+                        <img src="https://localhost:7058/images/showman/@showman.ShowmanImage" alt="showman picture" />
+                        <p class="showman-description">@showman.ShowmanDescription</p>
+                    </div>
 
                     @if (User.IsInRole("Admin"))
                     {
-                    <a asp-controller="Showman" asp-action="Update" asp-route-id="@showman.ShowmanID" class="btn btn-primary mx-1">Update Showman</a>
-                    <a asp-controller="Showman" asp-action="DeleteShowman" asp-route-id="@showman.ShowmanID" class="btn btn-danger mx-1">Delete Showman</a>
+                    <div class="buttons">
+                    <a asp-controller="Showman" asp-action="Update" asp-route-id="@showman.ShowmanID" class="btn btn-primary">Update Showman</a>
+                    <a asp-controller="Showman" asp-action="DeleteShowman" asp-route-id="@showman.ShowmanID" class="btn btn-danger">Delete Showman</a>
+                    </div>
                     }
             </div>
         }

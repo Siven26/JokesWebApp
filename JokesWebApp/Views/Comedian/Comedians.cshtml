@@ -5,30 +5,95 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(35,0,82,1) 20%, rgba(35,0,82,1) 80%, rgba(0,0,0,1) 100%);
+            color: #ffffff;
+        }
 
+        .comedian-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .comedian {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1em;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+            padding: 1em;
+        }
+
+        .comedian-title {
+            font-size: 2.5em;
+        }
+
+        .comedian-content {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin: 1em 0;
+        }
+
+        .comedian-description {
+            flex: 1;
+            margin-left: 1em;
+            font-size: 1.8em;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.2em 0.5em;
+            text-decoration: none;
+            font-size: 1em;
+            background-color: #f1c40f;
+            color: #282a36;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            margin-top: 1em;
+            text-align: center;
+        }
+
+            .btn:hover {
+                background-color: #ba980d;
+                color: #ffffff;
+            }
+
+        .buttons {
+            display: flex;
+            gap: 1em;
+        }
+    </style>
 </head>
 <body>
     <div class="comedian-list">
         @foreach (var comedian in Model)
         {
-                <div class="comedian">
-                    <h2 class="comedian-title">@comedian.ComedianName</h2>
+            <div class="comedian">
+                <h2 class="comedian-title">@comedian.ComedianName</h2>
+                <div class="comedian-content">
                     <img src="https://localhost:7058/images/comedian/@comedian.ComedianImage" alt="comedian picture" />
                     <p class="comedian-description">@comedian.ComedianDescription</p>
-
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <a asp-controller="Comedian" asp-action="Update" asp-route-id="@comedian.ComedianID" class="btn btn-primary mx-1">Update Comedian</a>
-                        <a asp-controller="Comedian" asp-action="DeleteComedian" asp-route-id="@comedian.ComedianID" class="btn btn-danger mx-1">Delete Comedian</a>
-                    }
                 </div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="buttons">
+                    <a asp-controller="Comedian" asp-action="Update" asp-route-id="@comedian.ComedianID" class="btn btn-primary">Update Comedian</a>
+                    <a asp-controller="Comedian" asp-action="DeleteComedian" asp-route-id="@comedian.ComedianID" class="btn btn-danger">Delete Comedian</a>
+                    </div>
+                }
+            </div>
         }
     </div>
 </body>
 </html>
-
-
-
-
-
-

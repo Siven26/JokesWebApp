@@ -13,6 +13,26 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\images\\comedian\\billBurr234210463.jpg",
+      "PackagePath": "staticwebassets\\images\\comedian\\billBurr234210463.jpg"
+    },
+    {
+      "Id": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\images\\comedian\\chrisRock234243831.jpg",
+      "PackagePath": "staticwebassets\\images\\comedian\\chrisRock234243831.jpg"
+    },
+    {
+      "Id": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\images\\comedian\\daveChappelle233917198.jpg",
+      "PackagePath": "staticwebassets\\images\\comedian\\daveChappelle233917198.jpg"
+    },
+    {
+      "Id": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\images\\showman\\davidLetterman234507792.jpg",
+      "PackagePath": "staticwebassets\\images\\showman\\davidLetterman234507792.jpg"
+    },
+    {
+      "Id": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\images\\showman\\drPhil234349599.jpg",
+      "PackagePath": "staticwebassets\\images\\showman\\drPhil234349599.jpg"
+    },
+    {
       "Id": "D:\\Visual Studio Projects\\JokesWebApp\\JokesWebApp\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

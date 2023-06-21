@@ -4,36 +4,98 @@
     ViewData["Title"] = $"Update - {Model.ShowmanName}";
 }
 
+<DOCTYPE html>
+    <html>
+        <head>
+            <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(180deg, rgba(45,0,105,1) 0%, rgba(0,0,0,1) 100%);
+                color: #ffffff;
+            }
 
-<div>
-    <h1>Update: <b>@Model.ShowmanName</b></h1>
-</div>
-<div>
-    <form asp-action="UpdateShowman" method="post" enctype="multipart/form-data">
-        <div class="text-danger">
-            <input type="hidden" asp-for="ShowmanID" />
-            <input type="hidden" asp-for="ShowmanImage" />
-            <div class="form">
-                <label asp-for="ShowmanName">Showman Name:</label>
-                <input asp-for="ShowmanName" />
-                <span asp-validation-for="ShowmanName"></span>
-            </div>
-            <div class="form">
-                <label asp-for="ShowmanImage">Showman Image:</label>
-                <input type="file" name="file" />
-                <span asp-validation-for="ShowmanImage"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShowmanDescription">Showman Description:</label>
-                <textarea asp-for="ShowmanDescription"></textarea>
-                <span asp-validation-for="ShowmanDescription"></span>
-            </div>
-            <div class="buttons">
-                <input type="submit" value="Save" />
-                <a asp-controller="Showman" asp-action="Showmans">Back</a>
-            </div>
+            label {
+                font-size: 25px;
+                color: #ffffff;
+                margin-top: 10px;
+            }
+
+            .form-field {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 5px 0;
+                box-sizing: border-box;
+                border: 3px solid #ccc;
+                transition: 0.5s;
+                outline: none;
+                border-radius: 5px;
+                font-size: 20px;
+            }
+
+                .form-field:focus {
+                    border: 3px solid #555;
+                }
+
+            .image-form-field {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 5px 0;
+                box-sizing: border-box;
+                transition: 0.5s;
+                outline: none;
+                border-radius: 5px;
+                font-size: 20px;
+            }
+
+
+            .btn {
+                display: inline-block;
+                padding: 0.5em 1em;
+                text-decoration: none;
+                font-size: 1.2em;
+                background-color: #f1c40f;
+                color: #282a36;
+                border-radius: 3px;
+                transition: background-color 0.3s ease;
+                margin: 1em 0;
+                text-align: center;
+            }
+
+                .btn:hover {
+                    background-color: #ba980d;
+                    color: #ffffff;
+                }
+            </style>
+        </head>
+        <body>
+        <div>
+            <h1>Update: <b>@Model.ShowmanName</b></h1>
         </div>
-    </form>
-</div>
+        <div>
+            <form asp-action="UpdateShowman" method="post" enctype="multipart/form-data">
+                <div class="form-container">
+                    <input type="hidden" asp-for="ShowmanID" />
+                    <input type="hidden" asp-for="ShowmanImage" />
+
+                        <label asp-for="ShowmanName">Showman Name:</label>
+                        <input asp-for="ShowmanName" class="form-field" />
+                        <span asp-validation-for="ShowmanName"></span>
+
+                        <label asp-for="ShowmanImage">Showman Image:</label>
+                        <input type="file" name="file" class="image-form-field" />
+                        <span asp-validation-for="ShowmanImage"></span>
+
+                        <label asp-for="ShowmanDescription">Showman Description:</label>
+                        <textarea asp-for="ShowmanDescription" class="form-field"></textarea>
+                        <span asp-validation-for="ShowmanDescription"></span>
+
+                        <input type="submit" value="Save" class="btn" />
+                        <a asp-controller="Showman" asp-action="Showmans" class="btn">Back</a>
+                </div>
+            </form>
+        </div>
+        </body>
+    </html>
+</DOCTYPE>
 
 

@@ -3,23 +3,83 @@
 <DOCTYPE html>
     <html>
     <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(35,0,82,1) 20%, rgba(35,0,82,1) 80%, rgba(0,0,0,1) 100%);
+                color: #ffffff;
+            }
+
+            .heading {
+                text-align: center;
+                margin-top: 40px;
+            }
+
+            .joke {
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+                margin: 3em auto;
+                padding: 2em;
+                width: calc(50% - 2em);
+                min-height: 380px;
+            }
+
+            .joke-title {
+                font-size: 2.0em;
+                color: #ffffff;
+                margin-bottom: 0.5em;
+            }
+
+            .joke-category, .joke-date, .joke-creator {
+                font-size: 1.5em;
+                color: #ffffff;
+                margin-bottom: 0.2em;
+            }
+
+            .joke-text {
+                font-size: 1.8em;
+                font-weight: bold;
+            }
+
+            .btn {
+                display: block;
+                width: 100%;
+                padding: 0.2em 0.5em;
+                text-decoration: none;
+                font-size: 1em;
+                background-color: #f1c40f;
+                color: #282a36;
+                border-radius: 3px;
+                transition: background-color 0.3s ease;
+                margin-top: 1em;
+                text-align: center;
+            }
+
+                .btn:hover {
+                    background-color: #ba980d;
+                    color: #ffffff;
+                }
+
+            .joke-links {
+                margin-top: 1em;
+                font-size: 20px;
+            }
+        </style>
     </head>
     <body>
         <form method="post" asp-action="DeleteJokeConfirmed" asp-route-id="@Model.JokeID">
-            <h1>Are you sure you want to delete this joke?</h1>
-            <div class="joke-list">
+            <h1 class="heading">Are you sure you want to delete this joke?</h1>
                 <div class="joke">
-                    <h2>@Model.JokeName</h2>
+                    <h2 class="joke-title">@Model.JokeName</h2>
                     <p class="joke-creator">Posted by: @Model.CreatorEmail.Split('@')[0]</p>
-                    <p>Category: @Model.JokeCategory</p>
-                    <p>@Model.JokeText</p>
-                    <p>Date added: @Model.JokeDateAdded.ToShortDateString()</p>
-                    <div class="joke-actions">
-                        <button type="submit" class="btn btn-danger mx-1">Yes</button>
-                        <a asp-controller="Joke" asp-action="Jokes" class="btn btn-primary mx-1">No</a>
+                    <p class="joke-category">Category: @Model.JokeCategory</p>
+                    <p class="joke-date">Date added: @Model.JokeDateAdded.ToShortDateString()</p>
+                    <p class="joke-text">@Model.JokeText</p>
+                    <div class="joke-links">
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        <a asp-controller="Joke" asp-action="Jokes" class="btn">No</a>
                     </div>
                 </div>
-            </div>
         </form>
     </body>
 </html>

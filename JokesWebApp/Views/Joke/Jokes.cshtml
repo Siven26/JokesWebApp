@@ -5,53 +5,102 @@
 <html>
 <head>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(35,0,82,1) 20%, rgba(35,0,82,1) 80%, rgba(0,0,0,1) 100%);
+            color: #ffffff;
+        }
+
+        .heading {
+            text-align: center;
+            color: #f8f8f2;
+            font-size: 2em;
+            padding-top: 15px;
+        }
+
         .joke-list {
             display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-around;
+            padding: 1em;
         }
 
         .joke {
-            background-color: #fff;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            padding: 20px;
-            width: calc(33.33% - 20px);
+            box-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+            margin: 1em;
+            padding: 2em;
+            width: calc(30% - 2em);
+            min-height: 380px;
         }
 
         .joke-title {
-            font-size: 24px;
-            margin: 0 0 10px;
+            font-size: 2.0em;
+            color: #ffffff;
+            margin-bottom: 0.5em;
         }
 
-        .joke-category {
-            font-size: 14px;
-            margin: 0 0 5px;
-        }
-
-        .joke-date {
-            font-size: 14px;
-            margin: 0 0 10px;
+        .joke-category, .joke-date, .joke-creator {
+            font-size: 1.5em;
+            color: #ffffff;
+            margin-bottom: 0.2em;
         }
 
         .btn {
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 14px;
-            padding: 10px 20px;
+            display: block;
+            width: 100%;
+            padding: 0.2em 0.5em;
             text-decoration: none;
-            transition: background-color 0.3s;
+            font-size: 1em;
+            background-color: #f1c40f;
+            color: #282a36;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            margin-top: 1em;
+            text-align: center;
         }
 
             .btn:hover {
-                background-color: #3E8E41;
+                background-color: #ba980d;
+                color: #ffffff;
             }
+
+        .joke-control-buttons {
+            display: flex;
+            gap: 1em;
+        }
+
+        .btn-small {
+            padding: 0.1em 0.25em;
+            font-size: 1em;
+        }
+
+
+        .joke-links {
+            margin-top: 1em;
+            font-size: 20px;
+        }
+
+        .comments-text {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-right: 1em;
+        }
+
+        .ratings-text {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
     </style>
 </head>
+
 <body>
+    <h3 class="heading">Loaded @Model.Count jokes</h3>
     <div class="joke-list">
         @foreach (var joke in Model)
         {
@@ -60,14 +109,18 @@
                 <p class="joke-creator">Posted by: @joke.CreatorEmail.Split('@')[0]</p>
                 <p class="joke-category">Category: @joke.JokeCategory</p>
                 <p class="joke-date">Date added: @joke.JokeDateAdded.ToShortDateString()</p>
-                <a asp-controller="Joke" asp-action="Details" asp-route-id="@joke.JokeID" class="btn btn-primary mx-1">Read More</a>
-                <a asp-controller="Comment" asp-action="Comments" asp-route-id="@joke.JokeID">Comments: @joke.CommentsCount</a>
-                <a asp-controller="Rating" asp-action="Ratings" asp-route-id="@joke.JokeID">Ratings: @joke.RatingsCount</a>
-                @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == joke.CreatorEmail || User.IsInRole("Admin"))
-                {
-                    <a asp-controller="Joke" asp-action="Update" asp-route-id="@joke.JokeID" class="btn btn-primary mx-1">Update Joke</a>
-                    <a asp-controller="Joke" asp-action="DeleteJoke" asp-route-id="@joke.JokeID" class="btn btn-danger mx-1">Delete Joke</a>
-                }
+                <div class="joke-links">
+                    <a asp-controller="Joke" asp-action="Details" asp-route-id="@joke.JokeID" class="btn btn-warning">Read More</a>
+                    <a asp-controller="Comment" asp-action="Comments" asp-route-id="@joke.JokeID" class="comments-text">Comments: @joke.CommentsCount</a>
+                    <a asp-controller="Rating" asp-action="Ratings" asp-route-id="@joke.JokeID" class="ratings-text">Ratings: @joke.RatingsCount</a>
+                    @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Email) == joke.CreatorEmail || User.IsInRole("Admin"))
+                    {
+                        <div class="joke-control-buttons">
+                            <a asp-controller="Joke" asp-action="Update" asp-route-id="@joke.JokeID" class="btn btn-small btn-primary">Update joke</a>
+                            <a asp-controller="Joke" asp-action="DeleteJoke" asp-route-id="@joke.JokeID" class="btn btn-small btn-danger">Delete joke</a>
+                        </div>
+                    }
+                </div>
             </div>
         }
     </div>

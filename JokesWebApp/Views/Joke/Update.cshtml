@@ -4,34 +4,85 @@
     ViewData["Title"] = $"Update - {Model.JokeName}";
 }
 
+<DOCTYPE html>
+    <html>
+        <head>
+            <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: linear-gradient(180deg, rgba(45,0,105,1) 0%, rgba(0,0,0,1) 100%);
+                color: #ffffff;
+            }
 
-<div>
-    <h1>Update: <b>@Model.JokeName</b></h1>
-</div>
-<div>
-    <form asp-action="UpdateJoke" method="post" enctype="multipart/form-data">
-        <div class="text-danger">
-            <input type="hidden" asp-for="JokeID" />
-            <div class="form">
-                <label asp-for="JokeName"></label>
-                <input asp-for="JokeName" />
-                <span asp-validation-for="JokeName"></span>
-            </div>
-            <div class="form">
-                <label asp-for="JokeCategory"></label>
-                <input asp-for="JokeCategory" />
-                <span asp-validation-for="JokeCategory"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="JokeText"></label>
-                <textarea asp-for="JokeText"></textarea>
-                <span asp-validation-for="JokeText"></span>
-            </div>
-            <div class="buttons">
-                <input type="submit" value="Save" />
-                <a asp-controller="Joke" asp-action="Jokes">Back</a>
-            </div>
-        </div>
-    </form>
-</div>
+            .heading {
+                text-align: center;
+            }
+
+            label {
+                font-size: 25px;
+                color: #ffffff;
+                margin-top: 10px;
+            }
+
+            .form-field {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 5px 0;
+                box-sizing: border-box;
+                border: 3px solid #ccc;
+                transition: 0.5s;
+                outline: none;
+                border-radius: 5px;
+                font-size: 20px;
+            }
+
+                .form-field:focus {
+                    border: 3px solid #555;
+                }
+
+
+            .btn {
+                display: inline-block;
+                padding: 0.5em 1em;
+                text-decoration: none;
+                font-size: 1.2em;
+                background-color: #f1c40f;
+                color: #282a36;
+                border-radius: 3px;
+                transition: background-color 0.3s ease;
+                margin: 1em 0;
+                text-align: center;
+            }
+
+                .btn:hover {
+                    background-color: #ba980d;
+                    color: #ffffff;
+                }
+            </style>
+        </head>
+        <body>
+            <h1 class="heading">Update: <b>@Model.JokeName</b></h1>
+            <form asp-action="UpdateJoke" method="post" enctype="multipart/form-data">
+                <div class="form-container">
+                    <input type="hidden" asp-for="JokeID" />
+
+                    <label asp-for="JokeName">Name:</label>
+                    <input asp-for="JokeName" class="form-field" />
+                    <span asp-validation-for="JokeName"></span>
+
+                    <label asp-for="JokeCategory">Category:</label>
+                    <input asp-for="JokeCategory" class="form-field" />
+                    <span asp-validation-for="JokeCategory"></span>
+
+                    <label asp-for="JokeText">Joke:</label>
+                <textarea asp-for="JokeText" class="form-field" rows="5"></textarea>
+                    <span asp-validation-for="JokeText"></span>
+
+                    <input type="submit" class="btn" value="Save" />
+                    <a asp-controller="Joke" asp-action="Jokes" class="btn">Back</a>
+                </div>
+            </form>
+        </body>
+    </html>
+</DOCTYPE>
 

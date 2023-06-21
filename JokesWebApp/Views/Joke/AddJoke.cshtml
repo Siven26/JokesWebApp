@@ -1,33 +1,77 @@
 ﻿@model JokeViewModel
 
-<DOCTYPE html>
-    <html>
-    <head>
-        <style>
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, rgba(45,0,105,1) 0%, rgba(0,0,0,1) 100%);
+            color: #ffffff;
+        }
 
-        </style>
-    </head>
-    <body>
-        <form method="post" asp-action="AddJoke">
-            <div class="form-container">
-                <p><label asp-for="JokeName">Name:</label></p>
-                <input asp-for="JokeName" class="form-field" required />
+        .heading {
+            text-align: center;
+        }
 
-                <p><label asp-for="JokeCategory">Category:</label></p>
-                <input name="JokeCategory" asp-for="JokeCategory" class="form-field" required />
+        label {
+            font-size: 25px;
+            color: #ffffff;
+            margin-top: 10px;
+        }
 
-                <p><label asp-for="JokeText">Joke:</label></p>
-                <textarea asp-for="JokeText" class="form-field" rows="5" required></textarea>
-            </div>
-            <div class="submit-button-container">
-                <input type="submit" class="submit-button" value="Add" />
-            </div>
-            <div class="back-button-container">
-                <a asp-controller="Joke" asp-action="Jokes" class="back-button">Back</a>
-            </div>
-        </form>
-    </body>
+        .form-field {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 5px 0;
+            box-sizing: border-box;
+            border: 3px solid #ccc;
+            transition: 0.5s;
+            outline: none;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+            .form-field:focus {
+                border: 3px solid #555;
+            }
+
+
+        .btn {
+            display: inline-block;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            font-size: 1.2em;
+            background-color: #f1c40f;
+            color: #282a36;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+            margin: 1em 0;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #ba980d;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" asp-action="AddJoke">
+        <h1 class="heading">Add Joke</h1>
+        <div class="form-container">
+            <label asp-for="JokeName">Name:</label>
+            <input asp-for="JokeName" class="form-field" required />
+
+            <label asp-for="JokeCategory">Category:</label>
+            <input name="JokeCategory" asp-for="JokeCategory" class="form-field" required />
+
+            <label asp-for="JokeText">Joke:</label>
+            <textarea asp-for="JokeText" class="form-field" rows="5" required></textarea>
+
+            <input type="submit" class="btn" value="Add" />
+            <a asp-controller="Joke" asp-action="Jokes" class="btn">Back</a>
+        </div>
+    </form>
+</body>
 </html>
-</DOCTYPE>
-
-
